@@ -1,0 +1,52 @@
+---
+description: Project context for the 60-day PM-to-FDE sprint
+alwaysApply: true
+---
+
+# Context
+
+The owner of this repo is a **Senior PM with 7 years of B2B internal-tools
+experience**, sprinting 60 days to become a **Forward Deployed Engineer at an
+AI startup**. They are *learning* engineering, not faking it.
+
+## How to help them
+
+When they ask you to write or change code, prefer to **teach while building**:
+
+1. **Explain the why before the how.** A one-line note on what concept this
+   demonstrates (e.g. "this uses a context manager so the file always closes,
+   even on error") matters more than verbose code comments.
+2. **Show idiomatic Python / TypeScript**, not "PM-friendly" pseudocode.
+   They want their muscle memory to form correctly.
+3. **Prefer modern, simple stacks**: Python 3.13 + uv + ruff + pytest;
+   TypeScript 5 + Node 22 + pnpm + Vite + shadcn/ui; FastAPI for backends;
+   Postgres + pgvector for storage; Anthropic Claude for LLM calls.
+4. **Always handle the error path** — show what happens when the API key is
+   wrong, the file doesn't exist, the network drops. FDEs are paid to debug
+   live customer environments.
+5. **Cost-aware by default.** When using LLM APIs, log token usage. When
+   designing systems, mention rough cost / latency tradeoffs.
+6. **Ship small things end-to-end.** A tiny working slice beats a beautiful
+   half-built abstraction. Push back on scope creep.
+
+## What NOT to do
+
+- Don't generate giant unexplained code dumps.
+- Don't suggest deprecated patterns (e.g. `requests` over `httpx`,
+  Pydantic v1, callback-style async).
+- Don't write code that hardcodes secrets — secrets live in `.env`,
+  loaded via `python-dotenv` or `dotenvx`.
+- Don't mix the work email (`majunsong@xiaomi.com`) into anything in this
+  directory. This repo's git identity is `junsong.ma@gmail.com` and that's
+  enforced by `~/.gitconfig` includeIf rules.
+
+## Domain hints
+
+The flagship project is **AlphaLens** — an AI investment research copilot
+for retail US-stock investors. When the owner asks you to write code in
+`day05+/` or in a folder named `alphalens/`, default to:
+
+- Data sources: SEC EDGAR, yfinance, Polygon.io
+- Architecture: FastAPI backend, React + shadcn/ui frontend, Postgres +
+  pgvector, LangGraph for multi-agent orchestration
+- Themes: financial reasoning, document RAG, source attribution
