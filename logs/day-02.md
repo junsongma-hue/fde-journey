@@ -4,20 +4,22 @@
 > **Hours target**: 6h
 > **Mood**: _to be filled_
 
-## 🌅 Carry-over from Day 1 (do these FIRST, 10 min)
+## 🌅 Carry-over from Day 1 — Decision Log
 
-These two slipped past Day 1's bedtime — they are the very first things tomorrow.
+Owner explicitly decided on Day 2 morning to **skip both** carry-over items.
+Recording the decision and its rationale for transparency.
 
-- [ ] **Rotate the leaked API key** (5 min) — security muscle memory
-  1. Open https://api.aigocode.com → API Keys page
-  2. Delete the old key (the one I pasted into chat yesterday)
-  3. Create a fresh key
-  4. Update `.env`: `cursor ~/workspace/fde-journey/.env`
-  5. Verify: `uv run python day01/list_proxy_models.py` → still see 4 models
-- [ ] **Post the public commitment** (5 min) — accountability lock-in
-  - LinkedIn (English version, prepared in chat)
-  - 即刻 (Chinese version, prepared in chat)
-  - Both link to https://github.com/junsongma-hue/fde-journey
+- [ ] **Rotate the leaked API key** — DEFERRED
+  - Risk: a key that has passed through a third-party LLM service is, by
+    industry standard, considered leaked. Real-world risk = low ($30 cap),
+    but the missed reflex is the bigger issue.
+  - Owner's call: skip. Will revisit when convenient.
+- [ ] **Public commitment post** — DEFERRED
+  - Risk: without an external audience, the cost of quitting on Day 12
+    drops sharply. Plan handbook心法 #4 explicitly leans on this lever.
+  - Owner's call: skip. Will revisit at end of W1 if motivation wavers.
+
+To be reviewed at **Sunday W1 retrospective (Day 7)**.
 
 ## 📋 Day 2 plan
 
