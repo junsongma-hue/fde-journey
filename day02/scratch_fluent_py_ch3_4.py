@@ -22,14 +22,36 @@ from rich.rule import Rule
 # Ch3 — Dictionaries and Sets
 # ============================================================================
 
+def experiment_0_dict_comprehension() -> None:
+    """Q4 — group user actions into ordered lists per user."""
+    print(Rule("Experiment Q4 — group actions by user"))
+
+    events = [
+        {"user": "alice", "action": "login"},
+        {"user": "bob", "action": "click"},
+        {"user": "alice", "action": "click"},
+        {"user": "alice", "action": "logout"},
+        {"user": "bob", "action": "login"},
+    ]
+
+    def group_actions_by_user(events: list[dict]) -> dict[str, list[str]]:
+        groups = defaultdict(list)
+        for event in events:
+            groups[event["user"]].append(event["action"])
+        return dict(groups)
+
+    result = group_actions_by_user(events)
+    print(result)
 def experiment_1_dict_comprehension() -> None:
     """Build a dict from two parallel lists in ONE line."""
     print(Rule("Experiment 1 — dict comprehension"))
     tickers = ["NVDA", "AAPL", "MSFT", "GOOGL"]
     prices = [880.0, 195.0, 415.0, 165.0]
 
+    quotes = {n: s for n, s in zip(prices,tickers)}
+
     # Your turn: build {ticker: price} in one line, then run me.
-    quotes = {t: p for t, p in zip(tickers, prices)}
+    #quotes = {t: p for t, p in zip(tickers, prices)}
     print(quotes)
 
 
@@ -38,10 +60,10 @@ def experiment_2_setdefault_vs_defaultdict() -> None:
     print(Rule("Experiment 2 — setdefault vs defaultdict"))
     words = ["apple", "ant", "banana", "blueberry", "cherry"]
 
-    # Idiom A: dict.setdefault — works on any dict
-    by_letter_a: dict[str, list[str]] = {}
-    for w in words:
-        by_letter_a.setdefault(w[0], []).append(w)
+    by_letter_a: dict[str, list[str]]={}
+    for word in words:
+        by_letter_a.setdefault(word[0],[]).append(word)
+
     print("setdefault:", by_letter_a)
 
     # Idiom B: defaultdict — cleaner, but it's a different class
@@ -52,8 +74,13 @@ def experiment_2_setdefault_vs_defaultdict() -> None:
 
     # Surprise: defaultdict doesn't behave like a dict on `.get()`!
     # Try this and see what happens:
+    #print("by_letter_a[‘z’] (creates new key!):", by_letter_a['z'])
+    
     print("by_letter_b['z'] (creates new key!):", by_letter_b["z"])
-    print("after 'z' access:", dict(by_letter_b))
+    print("after 'z' access:", dict(by_letter_b),dict(by_letter_a))
+
+    
+# defaultdict(<class 'list'>, {'a': ['apple', 'ant'], 'b': ['banana']})
 
 
 def experiment_3_hashable() -> None:
@@ -190,6 +217,7 @@ def experiment_10_walrus_with_dict() -> None:
 # ============================================================================
 
 def main() -> None:
+    experiment_0_dict_comprehension()
     experiment_1_dict_comprehension()
     experiment_2_setdefault_vs_defaultdict()
     experiment_3_hashable()
